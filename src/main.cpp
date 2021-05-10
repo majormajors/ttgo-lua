@@ -20,6 +20,8 @@ __unused void setup() {
     luaL_openextralibs(L);
 
     luaL_dofile(L, "/spiffs/test.lua");
+
+    lua_close(L);
 }
 
 void loop() {
