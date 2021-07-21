@@ -117,6 +117,16 @@ static int lepd_draw_rect(lua_State *L) {
     return 0;
 }
 
+static int lepd_fill_rect(lua_State *L) {
+    lua_Integer x = luaL_checkinteger(L, 1);
+    lua_Integer y = luaL_checkinteger(L, 2);
+    lua_Integer w = luaL_checkinteger(L, 3);
+    lua_Integer h = luaL_checkinteger(L, 4);
+    uint8_t color = lepd_clamp_color(luaL_checkinteger(L, 5));
+    epd_fill_rect(x, y, w, h, color, lepd_framebuffer);
+    return 0;
+}
+
 static int lepd_render(lua_State *L) {
     epd_draw_grayscale_image(epd_full_screen(), lepd_framebuffer);
     return 0;
@@ -134,6 +144,7 @@ static const luaL_Reg lepdlib[] = {
         { "draw_circle", lepd_draw_circle },
         { "fill_circle", lepd_fill_circle },
         { "draw_rect", lepd_draw_rect },
+        { "fill_rect", lepd_fill_rect },
         { "render", lepd_render },
         { NULL, NULL }
 };

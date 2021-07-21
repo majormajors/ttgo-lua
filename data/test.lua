@@ -10,6 +10,7 @@ epd.power_on()
 epd.clear()
 
 epd.write_string("Hello from Lua", 100, 100)
+epd.write_string("This is another string", 100, 120)
 epd.write_string(
         "Screen size " .. width .. "," .. height,
         300,
@@ -28,7 +29,7 @@ square_origin = {
     y = midpoint.y - r
 }
 square_length = r * 2
-epd.draw_rect(square_origin.x, square_origin.y, square_length, square_length, 16)
+epd.fill_rect(square_origin.x, square_origin.y, square_length, square_length, 16)
 
 epd.render()
 epd.power_off()
